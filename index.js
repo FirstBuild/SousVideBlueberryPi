@@ -36,9 +36,21 @@ bleno.on('stateChange', function(state) {
       }
     });
   }
-  else {
-    bleno.stopAdvertising();
-  }
+});
+
+bleno.on('disconnect', function(clientAddress) {
+  console.log('client disconnected');
+  bleno.stopAdvertising(function() {
+      bleno.startAdvertising(serviceName,14333333333333333333333333333337, function(err) {
+        if (err) {
+          console.log(err);
+        }
+      });
+    });
+});
+
+bleno.on('accept', function(clientAddress) {
+  console.log('client connected');
 });
 
 //connect to the cooktop 
@@ -75,6 +87,7 @@ greenBean.connect("range", function(range) {
     })
   });
 });
+
 
 function run()
 {
