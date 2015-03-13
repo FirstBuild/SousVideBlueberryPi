@@ -30,7 +30,7 @@ noble.on('stateChange', function(state) {
 
 bleno.on('stateChange', function(state) {
   if (state === 'poweredOn') {
-    bleno.startAdvertising(serviceName,14333333333333333333333333333337, function(err) {
+    bleno.startAdvertising(serviceName,['14333333333333333333333333333337'], function(err) {
       if (err) {
         console.log(err);
       }
@@ -41,7 +41,7 @@ bleno.on('stateChange', function(state) {
 bleno.on('disconnect', function(clientAddress) {
   console.log('client disconnected');
   bleno.stopAdvertising(function() {
-      bleno.startAdvertising(serviceName,14333333333333333333333333333337, function(err) {
+      bleno.startAdvertising(serviceName,['14333333333333333333333333333337'], function(err) {
         if (err) {
           console.log(err);
         }
@@ -91,7 +91,7 @@ greenBean.connect("range", function(range) {
 
 function run()
 {
-  setInterval(readProbeTemp,1000); 
+  setInterval(readProbeTemp,3000); 
 }
 
 function readProbeTemp()
